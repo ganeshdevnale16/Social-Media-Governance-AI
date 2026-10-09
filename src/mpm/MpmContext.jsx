@@ -59,7 +59,7 @@ export function MpmProvider({ children }) {
     recipients: DEFAULT_RECIPIENTS,
     sources: ['x', 'youtube', 'reddit', 'telegram', 'forums', 'news', 'bse', 'sebi'],
     autoEmailReport: true,
-    showNextSteps: true,
+    showNextSteps: false,
   })
   const [incidents, setIncidents] = useState(stored?.incidents || [])
   const [emails, setEmails] = useState(stored?.emails || [])

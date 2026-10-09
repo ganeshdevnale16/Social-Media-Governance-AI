@@ -63,7 +63,7 @@ function ShareModal({ inc, onClose }) {
   const [to, setTo] = useState(settings.recipients.map((r) => r.email).join(', '))
   const [note, setNote] = useState('')
   const subject = `[MPM Report] ${inc.company.short}: ${inc.result.headline}`
-  const body = (note ? note + '\n\n' : '') + reportAsText(inc, settings.showNextSteps !== false)
+  const body = (note ? note + '\n\n' : '') + reportAsText(inc, settings.showNextSteps === true)
   const list = to.split(',').map((s) => s.trim()).filter(Boolean)
   const send = () => {
     sendEmail({ incidentId: inc.id, type: 'Report shared', to: list, subject, note })
@@ -205,7 +205,7 @@ export default function ReportView() {
           ))}
         </ul>
 
-        {settings.showNextSteps !== false && (
+        {settings.showNextSteps === true && (
           <>
             <h4 className="mt-6 text-sm font-semibold">Suggested next steps for review</h4>
             <ul className="mt-1 list-disc pl-5 text-[14px] leading-relaxed text-neutral-800">
@@ -346,7 +346,7 @@ export function MpmSettings() {
             E-mail the report automatically when ready
           </label>
           <label className="mt-2 flex items-start gap-2 text-sm">
-            <input type="checkbox" checked={settings.showNextSteps !== false} onChange={(e) => set('showNextSteps', e.target.checked)} className="mt-1 accent-[#86bc25]" />
+            <input type="checkbox" checked={settings.showNextSteps === true} onChange={(e) => set('showNextSteps', e.target.checked)} className="mt-1 accent-[#86bc25]" />
             <span>Show "Suggested next steps" in reports and e-mails
               <span className="block text-[11px] text-neutral-500">Turn off when presenting to clients who should only see findings.</span>
             </span>

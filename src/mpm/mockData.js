@@ -270,7 +270,7 @@ export function buildInvestigation({ company, scenario, triggerAt, stockPct, ind
   return { clusters, evidence, timeline, sourceHits, verdict, headline, insight, actions, assessment, adj, preOpen }
 }
 
-export function reportAsText(inc, showNextSteps = true) {
+export function reportAsText(inc, showNextSteps = false) {
   const lines = [
     `MATERIAL PRICE MOVEMENT REPORT — ${inc.company.short} (${inc.company.symbol})`,
     `Reference: NSE/SURV/62122 | SEBI LODR Reg. 30(11)`,
