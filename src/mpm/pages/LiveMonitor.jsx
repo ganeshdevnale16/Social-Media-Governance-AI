@@ -1,6 +1,6 @@
-import { useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { Pause, Play, RotateCcw, TrendingDown, TrendingUp, Zap } from 'lucide-react'
+import { ChevronLeft, ChevronRight, EllipsisVertical, Pause, Play, RotateCcw, TrendingDown, TrendingUp, Zap } from 'lucide-react'
 import { useMpm } from '../MpmContext.jsx'
 import { INDEX, SCENARIOS, fmtINR, fmtTime, pct } from '../mockData.js'
 import { Card, PageHeader, Sparkline, StageTracker, VerdictBadge, GREEN, RED } from '../ui.jsx'
@@ -15,10 +15,80 @@ function Kpi({ label, value, sub, accent = '#171717' }) {
   )
 }
 
+// Row action menu: ⋮ → Trigger → scenarios + reset.
+// Rendered with fixed positioning so the table's scroll container doesn't clip it.
+function RowMenu({ symbol, onSimulate, onReset }) {
+  const [open, setOpen] = useState(null) // { top, right }
+  const [level, setLevel] = useState('main')
+  const btn = useRef(null)
+  const menu = useRef(null)
+
+  useEffect(() => {
+    if (!open) return
+    const close = (e) => {
+      if (menu.current?.contains(e.target) || btn.current?.contains(e.target)) return
+      setOpen(null)
+    }
+    const hide = () => setOpen(null)
+    document.addEventListener('mousedown', close)
+    window.addEventListener('resize', hide)
+    window.addEventListener('scroll', hide, true)
+    return () => {
+      document.removeEventListener('mousedown', close)
+      window.removeEventListener('resize', hide)
+      window.removeEventListener('scroll', hide, true)
+    }
+  }, [open])
+
+  const toggle = () => {
+    if (open) return setOpen(null)
+    const r = btn.current.getBoundingClientRect()
+    setLevel('main')
+    setOpen({ top: r.bottom + 4, right: window.innerWidth - r.right })
+  }
+  const run = (fn) => { fn(); setOpen(null) }
+  const item = 'flex w-full items-center gap-2 px-3 py-2 text-left text-[13px] hover:bg-neutral-100'
+
+  return (
+    <>
+      <button ref={btn} onClick={toggle} aria-label={`Actions for ${symbol}`} aria-expanded={!!open}
+        className={`inline-flex size-7 items-center justify-center hover:bg-neutral-100 ${open ? 'bg-neutral-100' : ''}`}>
+        <EllipsisVertical className="size-4 text-neutral-600" />
+      </button>
+      {open && (
+        <div ref={menu} role="menu" style={{ top: open.top, right: open.right }} className="fixed z-40 w-56 border border-neutral-200 bg-white py-1 shadow-lg">
+          {level === 'main' ? (
+            <button role="menuitem" onClick={() => setLevel('trigger')} className={item}>
+              <Zap className="size-3.5 text-neutral-600" />
+              <span className="flex-1">Trigger</span>
+              <ChevronRight className="size-3.5 text-neutral-400" />
+            </button>
+          ) : (
+            <>
+              <button onClick={() => setLevel('main')} className="flex w-full items-center gap-1.5 border-b border-neutral-100 px-3 py-2 text-left text-[11px] font-semibold text-neutral-500 hover:bg-neutral-50">
+                <ChevronLeft className="size-3.5" /> Trigger
+              </button>
+              {Object.entries(SCENARIOS).map(([k, s]) => (
+                <button key={k} role="menuitem" onClick={() => run(() => onSimulate(symbol, k))} className={item}>
+                  {s.direction === 'up' ? <TrendingUp className="size-3.5 text-[#5d8a12]" /> : <TrendingDown className="size-3.5 text-[#DA291C]" />}
+                  <span className={s.direction === 'up' ? 'text-[#4f7a0c]' : 'text-[#DA291C]'}>{s.label}</span>
+                </button>
+              ))}
+              <div className="my-1 border-t border-neutral-100" />
+              <button role="menuitem" onClick={() => run(() => onReset(symbol))} className={item}>
+                <RotateCcw className="size-3.5 text-neutral-600" /> Reset price to normal
+              </button>
+            </>
+          )}
+        </div>
+      )}
+    </>
+  )
+}
+
 export default function LiveMonitor() {
   const { companies, quotes, settings, incidents, emails, simulate, resetPrice, paused, setPaused } = useMpm()
   const navigate = useNavigate()
-  const [demoSymbol, setDemoSymbol] = useState('SBICARD')
   const thr = settings.threshold
   const idx = quotes[INDEX.symbol]
   const idxChg = ((idx.price - INDEX.prevClose) / INDEX.prevClose) * 100
@@ -40,17 +110,15 @@ export default function LiveMonitor() {
         }
       />
 
-      <section className="mb-4 grid grid-cols-2 gap-3 md:grid-cols-3 lg:grid-cols-5">
+      <section className="mb-4 grid grid-cols-2 gap-3 lg:grid-cols-4">
         <Kpi label="Companies monitored" value={settings.watchlist.length} sub="Live feed, 1.5s refresh" />
-        <Kpi label="Trigger threshold" value={`±${thr}%`} sub={settings.indexAdjust ? 'Index-adjusted vs NIFTY 50' : 'Raw move vs previous close'} />
         <Kpi label="Triggers today" value={incidents.length} accent={incidents.length ? RED : '#171717'} sub="Investigations opened" />
         <Kpi label="Material movements" value={material} accent={material ? RED : '#171717'} sub={`${reports} report(s) issued`} />
         <Kpi label="Alerts e-mailed" value={emails.length} accent={GREEN} sub={`${settings.recipients.length} configured recipients`} />
       </section>
 
-      <div className="grid grid-cols-1 gap-4 xl:grid-cols-3">
+      <div>
         <Card
-          className="xl:col-span-2"
           title="Watchlist"
           subtitle="Change is measured from previous close. Status turns amber within 1% of the threshold."
           right={
@@ -71,6 +139,7 @@ export default function LiveMonitor() {
                   <th className="py-2 pr-3 text-right font-medium">Index-adj.</th>
                   <th className="py-2 pr-3 font-medium">Trend</th>
                   <th className="py-2 font-medium">Status</th>
+                  <th className="w-10 py-2"><span className="sr-only">Actions</span></th>
                 </tr>
               </thead>
               <tbody>
@@ -109,6 +178,9 @@ export default function LiveMonitor() {
                           <span className="bg-neutral-100 px-2 py-0.5 text-[11px] font-medium text-neutral-600">Normal</span>
                         )}
                       </td>
+                      <td className="py-2.5 text-right">
+                        <RowMenu symbol={c.symbol} onSimulate={simulate} onReset={resetPrice} />
+                      </td>
                     </tr>
                   )
                 })}
@@ -117,33 +189,12 @@ export default function LiveMonitor() {
           </div>
         </Card>
 
-        <Card title="Simulate price movement" subtitle="Run a test movement to see the full trigger → investigation → report flow.">
-          <label className="mb-1 block text-xs font-medium text-neutral-600">Company</label>
-          <select value={demoSymbol} onChange={(e) => setDemoSymbol(e.target.value)} className="mb-3 w-full border border-neutral-300 bg-white px-3 py-2 text-sm">
-            {companies.map((c) => <option key={c.symbol} value={c.symbol}>{c.short} ({c.symbol})</option>)}
-          </select>
-          <div className="grid grid-cols-2 gap-2">
-            {Object.entries(SCENARIOS).map(([k, s]) => (
-              <button
-                key={k}
-                onClick={() => simulate(demoSymbol, k)}
-                className={`inline-flex items-center justify-center gap-1.5 border px-2 py-2 text-xs font-semibold transition-colors ${s.direction === 'up' ? 'border-[#86bc25] text-[#5d8a12] hover:bg-[#86bc25]/10' : 'border-red-300 text-[#DA291C] hover:bg-red-50'}`}
-              >
-                {s.direction === 'up' ? <TrendingUp className="size-3.5" /> : <TrendingDown className="size-3.5" />}
-                {s.label}
-              </button>
-            ))}
-          </div>
-          <button onClick={() => resetPrice(demoSymbol)} className="mt-2 inline-flex w-full items-center justify-center gap-1.5 border border-neutral-300 px-2 py-2 text-xs font-medium text-neutral-700 hover:border-neutral-400">
-            <RotateCcw className="size-3.5" /> Reset price to normal
-          </button>
-        </Card>
       </div>
 
       <Card className="mt-4" title="Recent triggers" subtitle="Each trigger runs the full pipeline. Target: report within 3–4 hours of the trigger.">
         {incidents.length === 0 ? (
           <p className="border-t border-dashed border-neutral-200 py-6 text-center text-sm text-neutral-500">
-            No triggers yet. Use Simulate price movement to run a spike or crash.
+            No triggers yet. Use the ⋮ menu on any stock and choose Trigger to run a spike or crash.
           </p>
         ) : (
           <div className="flex flex-col divide-y divide-neutral-100">

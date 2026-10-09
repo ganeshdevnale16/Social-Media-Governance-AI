@@ -161,10 +161,10 @@ export function reportEmail(inc, settings, note) {
     </table>
     <p style="margin:6px 0 0;font-size:12px;color:${MUTED};">${r.evidence.length} evidence items retained with source, link and timestamp in the system.</p>
   </td></tr>
-  <tr><td style="padding:18px 24px 8px;">
+  ${settings.showNextSteps !== false ? `<tr><td style="padding:18px 24px 8px;">
     <h2 style="margin:0 0 6px;font-size:15px;">Suggested next steps for review</h2>
     <ul style="margin:0;padding-left:20px;font-size:14px;line-height:1.65;">${r.actions.map((a) => `<li>${esc(a)}</li>`).join('')}</ul>
-  </td></tr>`
+  </td></tr>` : '<tr><td style="padding:0 0 8px;"></td></tr>'}`
   return {
     subject,
     html: shell({ preheader: `Material: ${yes ? 'Yes' : 'No'} — ${r.headline}`, title: subject, body, ctaText: 'Open full report', ctaHref: appUrl(`market-monitor/report/${inc.id}`) }),

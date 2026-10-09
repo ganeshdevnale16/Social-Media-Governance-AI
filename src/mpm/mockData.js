@@ -270,7 +270,7 @@ export function buildInvestigation({ company, scenario, triggerAt, stockPct, ind
   return { clusters, evidence, timeline, sourceHits, verdict, headline, insight, actions, assessment, adj, preOpen }
 }
 
-export function reportAsText(inc) {
+export function reportAsText(inc, showNextSteps = true) {
   const lines = [
     `MATERIAL PRICE MOVEMENT REPORT — ${inc.company.short} (${inc.company.symbol})`,
     `Reference: NSE/SURV/62122 | SEBI LODR Reg. 30(11)`,
@@ -288,9 +288,7 @@ export function reportAsText(inc) {
     'KEY EVIDENCE',
     ...inc.result.evidence.slice(0, 6).map((e) => `- ${e[0]} | ${fmtTime(e[2])} | ${e[1]}`),
     '',
-    'SUGGESTED NEXT STEPS',
-    ...inc.result.actions.map((a) => `- ${a}`),
-    '',
+    ...(showNextSteps ? ['SUGGESTED NEXT STEPS', ...inc.result.actions.map((a) => `- ${a}`), ''] : []),
     'This report is an input for NSE assessment and is not a regulatory determination.',
   ]
   return lines.join('\n')

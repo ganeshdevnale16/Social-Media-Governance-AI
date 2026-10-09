@@ -63,7 +63,7 @@ function ShareModal({ inc, onClose }) {
   const [to, setTo] = useState(settings.recipients.map((r) => r.email).join(', '))
   const [note, setNote] = useState('')
   const subject = `[MPM Report] ${inc.company.short}: ${inc.result.headline}`
-  const body = (note ? note + '\n\n' : '') + reportAsText(inc)
+  const body = (note ? note + '\n\n' : '') + reportAsText(inc, settings.showNextSteps !== false)
   const list = to.split(',').map((s) => s.trim()).filter(Boolean)
   const send = () => {
     sendEmail({ incidentId: inc.id, type: 'Report shared', to: list, subject, note })
@@ -205,10 +205,14 @@ export default function ReportView() {
           ))}
         </ul>
 
-        <h4 className="mt-6 text-sm font-semibold">Suggested next steps for review</h4>
-        <ul className="mt-1 list-disc pl-5 text-[14px] leading-relaxed text-neutral-800">
-          {r.actions.map((a, i) => <li key={i}>{a}</li>)}
-        </ul>
+        {settings.showNextSteps !== false && (
+          <>
+            <h4 className="mt-6 text-sm font-semibold">Suggested next steps for review</h4>
+            <ul className="mt-1 list-disc pl-5 text-[14px] leading-relaxed text-neutral-800">
+              {r.actions.map((a, i) => <li key={i}>{a}</li>)}
+            </ul>
+          </>
+        )}
 
         <p className="mt-8 border-t border-neutral-200 pt-3 text-[11px] text-neutral-500">
           {r.evidence.length} evidence items retained with source, link and timestamp. This report is an input for NSE’s own assessment and is not a regulatory determination.
@@ -340,6 +344,12 @@ export function MpmSettings() {
           <label className="mt-2 flex items-center gap-2 text-sm">
             <input type="checkbox" checked={settings.autoEmailReport} onChange={(e) => set('autoEmailReport', e.target.checked)} className="accent-[#86bc25]" />
             E-mail the report automatically when ready
+          </label>
+          <label className="mt-2 flex items-start gap-2 text-sm">
+            <input type="checkbox" checked={settings.showNextSteps !== false} onChange={(e) => set('showNextSteps', e.target.checked)} className="mt-1 accent-[#86bc25]" />
+            <span>Show "Suggested next steps" in reports and e-mails
+              <span className="block text-[11px] text-neutral-500">Turn off when presenting to clients who should only see findings.</span>
+            </span>
           </label>
           <p className="mt-3 text-[11px] text-neutral-500">Pre-9:30 (opening) and post-9:30 (intraday) moves are assessed separately.</p>
         </Card>
