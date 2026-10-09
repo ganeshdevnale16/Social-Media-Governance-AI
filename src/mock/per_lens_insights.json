@@ -1,0 +1,167 @@
+[
+    {
+        "lens":"Suspicious Claims & Information",
+        "top_themes":[
+            "Fake product complaints",
+            "Fraudulent Facebook page deletion warnings",
+            "Impersonation of Meta team",
+            "Customer dissatisfaction with product quality",
+            "Fraudulent Customer Support Contacts"
+        ],
+        "key_insights":[
+            "Customer feedback reveals significant concerns about fraudulent activities, such as fake product deliveries and impersonation attempts. These issues directly impact brand perception by eroding trust and creating a sense of unreliability around the brand. For instance, a customer reported receiving a fake bulb instead of the original product, which can lead to negative word-of-mouth and reduced customer loyalty.",
+            "The brand faces risks from impersonation attempts, such as fake Meta team messages and fraudulent Facebook page deletion warnings. These scams can confuse customers and damage the brand's reputation if not addressed promptly. However, the brand's proactive engagement with customers and efforts to resolve issues, such as product replacements, can strengthen its perception as a customer-focused and responsive organization."
+        ],
+        "count": 40,
+        "percentage": 1.825
+    },
+    {
+        "lens": "Response Accountability",
+        "top_themes": [
+            "Order Delivery Issues",
+            "Customer Service Responsiveness",
+            "Privacy and Security Concerns"
+            
+        ],
+        "key_insights": [
+            "Customer feedback highlights recurring concerns about delayed order deliveries and the need for prompt resolutions. The brand's acknowledgment of these issues and its efforts to address them demonstrate accountability, which positively impacts brand perception by showing a commitment to customer satisfaction. However, repeated delays and the need for escalation may erode trust if not resolved efficiently.",
+            "The brand's consistent emphasis on privacy and security, such as advising customers not to share personal details on social media, is a strength that reinforces trust and reliability. On the other hand, the frequent need for customers to provide complaint numbers and contact details for resolution suggests potential inefficiencies in the initial service process, which could risk customer frustration and negatively impact brand perception."
+        ],
+        "count": 552,
+        "percentage": 25.19397535371976
+    },
+    {
+        "lens": "Customer Escalation Signals",
+        "top_themes": [
+            "unresponsive customer support",
+            "Product quality issues and durability concerns",
+            "Warranty claims and unresolved complaints",
+            "Delivery and return process inefficiencies"
+        ],
+        "key_insights": [
+            "Customer feedback highlights significant dissatisfaction with ClientX's after-sales service and customer support. Many customers report unresponsive service centers, unresolved complaints, and delays in addressing warranty claims. This negatively impacts brand perception, as customers feel neglected and undervalued, leading to frustration and a loss of trust in the brand.",
+            "The recurring issues with product quality, such as defective or damaged items, and the inefficiency in handling returns and replacements, pose a major risk to ClientX's reputation. However, customers who initially appreciated product functionality before encountering issues suggest that there is potential to strengthen brand perception by improving service reliability and addressing quality control concerns."
+        ],
+        "count": 480,
+        "percentage": 21.907804655408487
+    },
+    {
+        "lens": "Resolution Orientation",
+        "top_themes": [
+            "Apologies for inconvenience",
+            "Request for customer details",
+            "Escalation of issues to internal teams",
+            "Successful resolution and customer satisfaction"
+        ],
+        "key_insights": [
+            "Customer feedback reveals that the brand is actively engaging with customers to resolve issues, which positively impacts brand perception by demonstrating accountability and responsiveness. However, the repetitive nature of responses may come across as impersonal, potentially undermining the emotional connection with customers.",
+            "The brand's emphasis on resolving complaints and following up with customers after resolution strengthens its reputation for reliability and customer care. However, risks include the perception of inefficiency if issues are not resolved promptly or if customers feel their concerns are not addressed thoroughly."
+        ],
+        "count": 402,
+        "percentage": 18.34778639890461
+    },
+    {
+        "lens": "Brand Promise Consistency",
+        "top_themes": [
+            "Product Quality Issues",
+            "Durability and Longevity",
+            "Misleading Product Descriptions"
+        ],
+        "key_insights": [
+            "Customer feedback highlights significant dissatisfaction with product quality, including issues like fragile materials, defective items, and poor performance. These recurring complaints erode trust in the brand's promise of delivering reliable and high-quality products, negatively impacting brand perception. Customers expect durability and functionality, but frequent breakdowns and subpar materials fail to meet these expectations.",
+            "The brand faces risks due to inconsistent customer service and misleading product descriptions. Complaints about unresponsive customer support, difficulty in claiming warranties, and receiving used or damaged products create a perception of unreliability. However, positive feedback on specific products, such as ease of use and good performance in certain cases, indicates that the brand has the potential to strengthen its reputation if it addresses quality control and service gaps effectively."
+        ],
+        "count": 358,
+        "percentage": 16.339570972158832
+    },
+    {
+        "lens": "Fraud & Impersonation Signals",
+        "top_themes": [
+            "Fake product complaints",
+            "Fraudulent Facebook page deletion warnings",
+            "Impersonation of Meta team",
+            "Customer dissatisfaction with product quality"
+        ],
+        "key_insights": [
+            "Customer feedback reveals significant concerns about fraudulent activities, such as fake product deliveries and impersonation attempts. These issues directly impact brand perception by eroding trust and creating a sense of unreliability around the brand. For instance, a customer reported receiving a fake bulb instead of the original product, which can lead to negative word-of-mouth and reduced customer loyalty.",
+            "The brand faces risks from impersonation attempts, such as fake Meta team messages and fraudulent Facebook page deletion warnings. These scams can confuse customers and damage the brand's reputation if not addressed promptly. However, the brand's proactive engagement with customers and efforts to resolve issues, such as product replacements, can strengthen its perception as a customer-focused and responsive organization."
+        ],
+        "count": 132,
+        "percentage": 6.024646280237335
+    },
+    {
+        "lens": "Tone & Professionalism",
+        "top_themes": [
+            "Product quality and performance",
+            "Customer service and responsiveness",
+            "Brand campaigns and emotional connection",
+            "Ease of use and convenience"
+        ],
+        "key_insights": [
+            "Customer feedback highlights a strong perception of product quality and performance across various offerings, such as fans, juicers, and mixer grinders. Positive reviews about durability, efficiency, and innovative features reinforce the brand's reputation for reliability and value for money. Additionally, the emotional connection fostered through campaigns like the Diwali TVC featuring MS Dhoni enhances the brand's image as customer-centric and culturally resonant.",
+            "While the majority of feedback is positive, occasional mentions of noise levels, minor product defects, and delivery issues pose risks to brand perception if not addressed promptly. However, the brand's proactive and professional customer service responses, including quick replacements and gratitude for customer loyalty, mitigate these risks and strengthen trust. This balance of quality products and responsive service positions the brand as dependable and customer-focused."
+        ],
+        "count": 83,
+        "percentage": 3.7882245549977176
+    },
+    {
+        "lens": "Transparency & Disclosure",
+        "top_themes": [
+            "Warranty Confusion",
+            "Customer Service Responsiveness",
+            "Product Quality Concerns",
+            "Marketing and Communication Clarity"
+        ],
+        "key_insights": [
+            "Customer feedback highlights significant concerns regarding warranty discrepancies and product descriptions, which can negatively impact brand perception by eroding trust. Customers expect clear and consistent communication about product features, warranties, and specifications, and any deviation from this expectation creates confusion and dissatisfaction.",
+            "ClientX's proactive customer service responses, such as addressing delivery issues and privacy concerns, demonstrate a commitment to resolving customer problems. This strengthens brand perception by showcasing transparency and care for customer security. However, recurring issues with warranty clarity and product packaging pose risks to the brand's reputation, emphasizing the need for improved communication and quality control."
+        ],
+        "count": 75,
+        "percentage": 3.423094477407576
+    },
+    {
+        "lens": "Community Sentiment Shift",
+        "top_themes": [
+            "Poor product quality and reliability",
+            "Ineffective customer service and support",
+            "Negative impact of leadership instability",
+            "Frustration with post-purchase experience"
+        ],
+        "key_insights": [
+            "Customer feedback highlights significant dissatisfaction with ClientX's product quality and reliability, particularly with ceiling fans and other appliances. Recurring complaints about defective products, unresolved issues, and lack of responsiveness from customer service have severely impacted the brand's perception as trustworthy and customer-oriented. This sentiment is further amplified by customers sharing their negative experiences publicly, discouraging others from purchasing ClientX products.",
+            "The sudden resignation of ClientX's CEO has added to the brand's perception challenges, as it signals instability in leadership and raises concerns about the company's ability to manage crises effectively. Combined with poor customer service and unresolved complaints, this creates a perception of a brand that lacks accountability and reliability, posing risks to customer loyalty and investor confidence."
+        ],
+        "count": 58,
+        "percentage": 2.647193062528526
+    },
+    {
+        "lens": "Moderation Governance",
+        "top_themes": [
+            "Product Quality Concerns",
+            "Delivery and Logistics Issues",
+            "Customer Service Challenges",
+            "Replacement and Refund Policies"
+        ],
+        "key_insights": [
+            "Customer feedback highlights significant dissatisfaction with product quality, delivery issues, and customer service inefficiencies. These recurring complaints can negatively impact brand perception, as customers may associate the brand with unreliability and poor service standards. For instance, complaints about damaged items, poor-quality products, and unresponsive customer care suggest a gap between customer expectations and actual experiences.",
+            "While the brand offers a wide range of products and deals, the perception risks lie in unresolved complaints and logistical inefficiencies. Strengths such as affordability and variety are overshadowed by negative experiences, which could lead to customer attrition and reduced trust. Addressing these concerns proactively can help mitigate risks and strengthen the brand's reputation for reliability and customer satisfaction."
+        ],
+        "count": 40,
+        "percentage": 1.8256503879507076
+    },
+    {
+        "lens": "Misinformation & Clarification",
+        "top_themes": [
+            "Misinformation in social media posts",
+            "Customer confusion about product functionality",
+            "Brand response to sensitive geopolitical issues",
+            "Homeschooling trends and curriculum options"
+        ],
+        "key_insights": [
+            "Customer feedback highlights the impact of misinformation on brand perception, especially when false claims or outdated information are shared on social media. This can lead to confusion, distrust, and negative sentiment toward the brand if not promptly addressed with clarifications.",
+            "Brands face risks when navigating sensitive geopolitical issues, as seen in the case of Tara Strong's firing and the Israel-Palestine conflict. While some customers appreciate transparency and ethical stances, others may perceive actions as biased or discriminatory, potentially alienating segments of the audience. On the other hand, proactive clarification and engagement can strengthen trust and demonstrate accountability."
+        ],
+        "count": 11,
+        "percentage": 0.5020538566864445
+    }
+]
