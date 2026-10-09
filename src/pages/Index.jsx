@@ -27,7 +27,7 @@ export default function Index() {
     {
       id: 3,
       name: "Material Price Movement Analytics",
-      description: "Monitors share price against previous close in near real time. On a material spike or fall it alerts members, pulls news and social data, detects potential rumours and issues an evidence-based report (NSE/SURV/62122, SEBI LODR Reg. 30(11)).",
+      description: "AI-powered price movement monitoring that detects material spikes and falls, traces the news and rumours behind them, and delivers an evidence-based report for timely verification.",
       category: "Material Price Movement",
       key: "/market-monitor",
       icon: "ti-chart-line",
